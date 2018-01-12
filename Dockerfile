@@ -7,7 +7,6 @@ ENV DB_NAME=mydb
 ENV DB_USER=myuser
 ENV DB_PASSWORD=mypassword
 
-#ADD mariadb.repo /etc/yum.repos.d/mariadb.repo
 ADD create_mysql_user_and_database.sh /user/local/bin/create_mysql_user_and_database.sh
 ADD db.sql /user/local/db.sql
 
@@ -15,6 +14,8 @@ ADD db.sql /user/local/db.sql
 RUN echo "deb http://ftp.osuosl.org/pub/mariadb/repo/10.1/ubuntu xenial main" > /etc/apt/sources.list.d/mariadb.list && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes mariadb-server mariadb-server-10.1
+
+RUN apt-get install -y vim
 
 EXPOSE 3306
 
