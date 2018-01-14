@@ -16,6 +16,7 @@ RUN echo "deb http://ftp.osuosl.org/pub/mariadb/repo/10.1/ubuntu xenial main" > 
     DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes mariadb-server mariadb-server-10.1
 
 RUN apt-get install -y vim
+RUN sed -ie "s/^bind-address\s*=\s*127\.0\.0\.1$/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
 
 EXPOSE 3306
 
